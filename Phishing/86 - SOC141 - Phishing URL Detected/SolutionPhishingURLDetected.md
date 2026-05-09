@@ -25,7 +25,7 @@ URLHouse
 URLScan
 HybridAnalysis
 
-Ayant un penchant pour VirusTotal, j'utiliserai cet outil. Voici les résultats de mon analyse au moment de mon scan.
+Je décide d'utiliser VirusTotal. Voici les résultats de mon analyse au moment de mon scan.
 
 <img width="1625" height="224" alt="image" src="https://github.com/user-attachments/assets/c2b76d51-bb60-4bc4-885a-e836dd90a2d0" />
 
