@@ -18,14 +18,6 @@ Chaque write-up documente l'intégralité de la démarche d'investigation :
 
 ---
 
-## Alertes traitées
-
-| ID | Titre | Verdict | Outils utilisés |
-|----|-------|---------|-----------------|
-| [SOC141](./SOC141_Phishing_URL_Detected.md) | Phishing URL Detected | `Vrai Positif` | VirusTotal · Log Management · EDR |
-
----
-
 ## Outils d'analyse utilisés
 
 | Outil | Usage |
