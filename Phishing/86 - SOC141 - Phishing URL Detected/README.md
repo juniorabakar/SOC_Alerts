@@ -1,4 +1,4 @@
-# SOC141 — Phishing URL Detected
+# SOC141 : Phishing URL Detected
 
 [![Plateforme](https://img.shields.io/badge/Plateforme-LetsDefend-1abc9c?style=flat-square)](https://letsdefend.io/)
 [![Catégorie](https://img.shields.io/badge/Catégorie-Phishing-e74c3c?style=flat-square)]()
@@ -17,7 +17,7 @@ Prenons en charge cette alerte.
 
 ---
 
-## Étape 1 — Collecte des informations initiales
+## Étape 1 : Collecte des informations initiales
 
 La première chose à faire est d'extraire les informations clés directement depuis l'alerte :
 
@@ -27,7 +27,7 @@ La première chose à faire est d'extraire les informations clés directement de
 
 ---
 
-## Étape 2 — Recherche dans le Log Management
+## Étape 2 : Recherche dans le Log Management
 
 Avec ces trois informations en main, direction le **Log Management** pour chercher des entrées correspondant à la date de l'alerte. Deux entrées correspondent :
 
@@ -39,7 +39,7 @@ En regardant de plus près, une URL a été émise depuis l'adresse IP suspecte 
 
 ---
 
-## Étape 3 — Analyse de l'URL avec VirusTotal
+## Étape 3 : Analyse de l'URL avec VirusTotal
 
 Il faut maintenant analyser cette URL via des outils tiers pour déterminer si elle est malveillante. Plusieurs options sont disponibles :
 
@@ -56,15 +56,15 @@ J'opte pour **VirusTotal**. Voici les résultats au moment de mon analyse :
 **Analyse des résultats :**
 
 - **12/97** moteurs antivirus considèrent l'URL comme malveillante ou suspecte
-- **85/97** ne la flaggent pas — ce qui peut s'expliquer par du phishing récent, un faible niveau de confiance, ou des détections divergentes entre moteurs
-- VirusTotal a reçu une réponse **Forbidden (403)** en tentant de récupérer l'URL — le contenu n'a peut-être pas pu être analysé correctement
-- L'URL pointe vers le domaine **`mogagrocol.ru`** avec un chemin de type WordPress (`/wp-content/plugins/akismet/...`) et un paramètre `email=...@letsdefend.io` — typique d'une campagne de tracking/phishing ou d'un site compromis
+- **85/97** ne la flaggent pas : ce qui peut s'expliquer par du phishing récent, un faible niveau de confiance, ou des détections divergentes entre moteurs
+- VirusTotal a reçu une réponse **Forbidden (403)** en tentant de récupérer l'URL : le contenu n'a peut-être pas pu être analysé correctement
+- L'URL pointe vers le domaine **`mogagrocol.ru`** avec un chemin de type WordPress (`/wp-content/plugins/akismet/...`) et un paramètre `email=...@letsdefend.io` : typique d'une campagne de tracking/phishing ou d'un site compromis
 
 > **Verdict :** Avec 12/97 détections, il est raisonnable de classifier cette URL comme **suspecte/malveillante** dans un contexte SOC plutôt que de la considérer comme bénigne.
 
 ---
 
-## Étape 4 — Vérification des accès dans les journaux
+## Étape 4 : Vérification des accès dans les journaux
 
 La question clé est maintenant : **est-ce qu'un appareil du réseau a réellement accédé à cette URL ?**
 
@@ -77,13 +77,13 @@ La réponse est **oui**. Voici les détails :
 | **Date d'accès** | 22 Mars 2021 à 21h23 |
 | **Adresse source** | `172.16.17.49` |
 | **Adresse de destination** | `91.189.114.8` |
-| **Requête bloquée ?** | ❌ Non — action `Allowed` |
+| **Requête bloquée ?** | ❌ Non : action `Allowed` |
 | **Accès à l'URL ?** | ✅ Oui |
 | **User-Agent** | `Mozilla/5.0 (Windows NT 6.1; Win64; x64)...` |
 
 ---
 
-## Étape 5 — Identification de l'utilisateur via l'EDR
+## Étape 5 : Identification de l'utilisateur via l'EDR
 
 <img width="1515" height="725" alt="EDR" src="https://github.com/user-attachments/assets/cd14d909-ac47-467e-a1b3-cc44716cfba7" />
 
@@ -91,7 +91,7 @@ En consultant la solution EDR, on identifie que l'accès provient de l'utilisate
 
 ---
 
-## Étape 6 — Confinement de la machine
+## Étape 6 : Confinement de la machine
 
 L'alerte étant un **vrai positif**, on passe immédiatement au confinement de la machine d'Emily depuis la page EDR :
 
@@ -99,7 +99,7 @@ L'alerte étant un **vrai positif**, on passe immédiatement au confinement de l
 
 ---
 
-## Étape 7 — Clôture de l'alerte
+## Étape 7 : Clôture de l'alerte
 
 Pour finir, on renseigne les **artefacts importants** et on ajoute des **notes à destination des analystes de niveau 2** pour faciliter l'escalade si nécessaire.
 
@@ -119,8 +119,8 @@ Pour finir, on renseigne les **artefacts importants** et on ajoute des **notes �
 
 **2. Ce que cette alerte m'a appris**
 
-- Un score VirusTotal de 12/97 est suffisant pour considérer une URL comme suspecte dans un contexte SOC — ne pas attendre une majorité de détections
-- Une réponse 403 de VirusTotal ne signifie pas que l'URL est saine — elle peut simplement indiquer que le contenu n'a pas pu être analysé
+- Un score VirusTotal de 12/97 est suffisant pour considérer une URL comme suspecte dans un contexte SOC : ne pas attendre une majorité de détections
+- Une réponse 403 de VirusTotal ne signifie pas que l'URL est saine : elle peut simplement indiquer que le contenu n'a pas pu être analysé
 - Un domaine `.ru` avec un chemin WordPress et un paramètre `email=` est un signal fort de phishing ou de site compromis
 - Le fait que la requête soit `Allowed` (non bloquée) rend le confinement immédiat de la machine indispensable
 
