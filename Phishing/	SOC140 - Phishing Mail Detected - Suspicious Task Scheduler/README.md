@@ -24,7 +24,7 @@
 | Adresse source        | aaronluo@cmail.carleton.ca                            |
 | Adresse de destination| mark@letsdefend.io                                    |
 | Objet de l'e-mail     | COVID19 Vaccine                                       |
-| Action de l'équipement| Blocked                                               |
+| Action de l'appareil| Blocked                                               |
 
 > **Hypothèse de départ :** Un e‑mail au sujet sensible (*COVID19 Vaccine*) a été détecté comme potentiellement malveillant. L’objectif est de vérifier si ce mail contient des indicateurs de phishing (URL ou pièce jointe malveillante), de confirmer s’il a été livré ou bloqué, puis d’évaluer l’impact potentiel pour l’utilisateur cible.
 
@@ -59,4 +59,11 @@ Dans le cadre de ce lab, j’ai décidé d'utiliser **VirusTotal**:
 
 <img width="1780" height="245" alt="image" src="https://github.com/user-attachments/assets/710deeee-57ee-40b3-8d56-db05d000361c" />
 
+Donc 
+- **10/95** moteurs de sécurité marquent cette URL comme **malveillante**.
+- Le fichier servi est un ZIP, typiquement utilisé pour
+  transporter un document ou un exécutable piégé.
 
+> **Conclusion de l’étape :** La réputation VirusTotal confirme que l’URL de téléchargement associée à la
+> pièce jointe est malveillante. La plupart l'ont qualifié de **Trojan**.
+> Heureusement, vu l'Action de l'appareil donné plus haut, **le mail ne semble pas avoir été distribué**.
