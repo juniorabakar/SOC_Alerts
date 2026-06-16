@@ -154,7 +154,7 @@ L’URL est considérée comme suspecte/malveillante et un utilisateur y a effec
 > *Ces recommandations sont formulées dans le cadre d’un lab fictif et ne sont pas implémentées en production.*
 
 - [x] Bloquer le domaine `mogagrocol.ru` et l’IP `91.189.114.8` au niveau du proxy/firewall.
-- [x] Maintenir `EmilyComp` en confinement le temps d’une analyse complémentaire (EDR, AV, logs).
+- [x] Maintenir **`EmilyComp`** en confinement le temps d’une analyse complémentaire (EDR, AV, logs).
 - [x] Vérifier via le SIEM si d’autres machines ont tenté d’accéder à la même URL ou au même domaine sur la période récente.
 - [x] Mettre à jour les règles de filtrage web (proxy/DNS) pour renforcer le blocage des domaines à faible réputation.
 - [x] Sensibiliser l’utilisateur `Emily` (et plus largement les utilisateurs) aux risques du phishing et aux bonnes pratiques (vérification des URLs, signalement des mails suspects).
